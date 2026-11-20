@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Maison Vale — a curated collection of exceptional homes on the Turkish coast and in Istanbul.">
+<title>Maison Vale — Homes with a story</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--sea:#303a23;--deep:#1b2318;--stone:#ded2b1;--paper:#d4c59f;--glass:#b9c196;--lamp:#e2bb70;--mute:#5b614c;--line:#b6ac8b;--serif:'Newsreader',Georgia,serif;--sans:'Hanken Grotesk',system-ui,sans-serif;--light:.35}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--stone);color:var(--sea);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--lamp);outline-offset:3px;box-shadow:0 0 0 5px var(--deep)}
+.wrap{width:min(1240px,calc(100% - 56px));margin:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:300;margin:0}
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:20;height:84px;display:flex;align-items:center;transition:background .4s,color .4s,height .4s;color:#fff}
+header.solid{background:#1b2318f2;backdrop-filter:blur(14px);color:#f4ead3;height:68px;box-shadow:0 1px 0 #e2bb704d}
+header .wrap{display:flex;align-items:center;justify-content:space-between}
+.logo{font:400 26px var(--serif);letter-spacing:.14em}.logo i{font-style:italic;letter-spacing:.04em;opacity:.8}
+.nav{display:flex;gap:34px;font-size:14px}.nav a{position:relative;padding:4px 0}.nav a:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:currentColor;transition:right .3s}.nav a:hover:after{right:0}
+.cta{border:1px solid currentColor;border-radius:99px;padding:11px 22px;font-size:14px;transition:background .3s,color .3s}.cta:hover,header.solid .cta:hover{background:var(--lamp);border-color:var(--lamp);color:var(--deep)}
+.menu{display:none;background:none;border:0;font-size:15px;cursor:pointer;padding:8px}
+/* hero */
+.hero{position:relative;height:100svh;min-height:640px;color:#fff;overflow:hidden;background:var(--deep)}
+.hero-img{position:absolute;inset:-2%;background-image:url('assets/maison-vale/hero-villa.jpg');background-position:center;background-size:cover;background-repeat:no-repeat;filter:brightness(calc(1.08 - var(--light)*.5)) sepia(calc(var(--light)*.55)) saturate(calc(.95 + var(--light)*.5)) hue-rotate(calc(var(--light)*-14deg));transform:scale(1.06);animation:settle 2.4s cubic-bezier(.2,.7,.2,1) forwards}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#1b231899 0,transparent 30%,#1b2318e6 100%),radial-gradient(120% 70% at 85% 105%,rgb(226 187 112 / calc(var(--light)*.45)),transparent 60%)}
+.hero-in{position:absolute;z-index:2;left:0;right:0;bottom:150px}
+.hero h1{font-size:clamp(54px,9.4vw,148px);line-height:.92;letter-spacing:-.035em;max-width:11ch}
+.hero h1 span{display:block;overflow:hidden;padding-bottom:.06em}.hero h1 span b{display:block;font-weight:300;transform:translateY(105%);animation:rise 1.2s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2) b{animation-delay:.18s;font-style:italic;color:var(--lamp)}.hero h1 span:nth-child(3) b{animation-delay:.36s}
+.hero-sub{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-top:34px;opacity:0;animation:fade 1s .9s forwards}
+.hero-sub p{max-width:400px;margin:0;font-size:17px;color:#ffffffd9}
+.hero-kicker{display:flex;align-items:center;gap:10px;margin-bottom:20px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#ffffffd9}
+.hero-kicker:before{content:"";width:38px;height:1px;background:var(--lamp)}
+.scroll-cue{position:absolute;z-index:3;right:28px;bottom:42px;width:42px;height:42px;border:1px solid #ffffff80;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:19px;transition:background .3s,transform .3s}
+.scroll-cue:hover{background:#ffffff20;transform:translateY(3px)}
+.light{width:min(340px,100%)}.light label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:10px;color:#ffffffcc}.light output{color:var(--lamp);font-variant-numeric:tabular-nums}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:ew-resize}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:linear-gradient(90deg,var(--glass),#e8dfc7,var(--lamp),#a86d3e)}
+input[type=range]::-moz-range-track{height:2px;background:linear-gradient(90deg,var(--glass),#e8dfc7,var(--lamp),#a86d3e)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--lamp);border:4px solid #fff;margin-top:-10px;box-shadow:0 0 0 8px #e2bb7033}
+input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--lamp);border:4px solid #fff}
+@keyframes rise{to{transform:none}}@keyframes fade{to{opacity:1}}@keyframes settle{to{transform:scale(1)}}
+/* search */
+.search-wrap{position:relative;z-index:5;margin-top:-62px}
+.search{background:var(--sea);color:#f4ead3;padding:22px 26px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:22px;box-shadow:0 30px 60px -20px #1b231880}
+.trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:18px 0 0;color:var(--mute)}
+.trust-row div{display:flex;align-items:center;gap:9px;font-size:13px}.trust-row i{font-style:normal;color:var(--sea);font:300 24px var(--serif);line-height:1}
+.field label{display:block;font-size:13px;color:#ded3b6;margin-bottom:2px}
+.field select{width:100%;border:0;border-bottom:1px solid #b6ac8b;background:transparent;padding:8px 0;font-size:16px;outline-offset:4px;border-radius:0}.field option{background:var(--sea);color:#f4ead3}
+.btn{background:var(--lamp);color:var(--deep);border:0;padding:16px 28px;font-size:15px;font-weight:600;cursor:pointer;transition:background .3s,transform .3s,box-shadow .3s}.btn:hover{background:#f0d093;transform:translateY(-3px);box-shadow:0 10px 24px #1b231833}.btn:active{transform:translateY(0)}
+.search .btn{align-self:end}
+/* sections */
+.section{padding:130px 0 40px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:56px}
+.head h2{font-size:clamp(42px,6vw,86px);line-height:.98;letter-spacing:-.03em}.head h2 em{font-style:italic;color:#755014}
+.eyebrow{display:block;margin-bottom:14px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.head p{max-width:340px;color:var(--mute);margin:0}
+.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:56px 28px}
+.card{min-width:0}.card.feature{grid-column:span 2}
+.gallery{position:relative;aspect-ratio:4/5;overflow:hidden;background:#a6a782}.feature .gallery{aspect-ratio:16/10}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),opacity .35s}
+.card:hover .gallery img{transform:scale(1.04)}.gallery img.swap{opacity:0}
+.tag{position:absolute;left:14px;top:14px;background:var(--paper);padding:6px 12px;font-size:13px;border-radius:99px}
+.save{position:absolute;right:14px;top:14px;width:38px;height:38px;border-radius:50%;border:0;background:var(--paper);cursor:pointer;font-size:17px;transition:transform .25s}.save:hover{transform:scale(1.12)}.save[aria-pressed=true]{background:var(--lamp)}
+.arrow{position:absolute;bottom:14px;width:42px;height:42px;border-radius:50%;border:0;background:#e5d7b5ee;font-size:20px;cursor:pointer;transition:background .25s,color .25s}.arrow:hover{background:var(--sea);color:#fff}.prev{right:64px}.next{right:14px}
+.dots{position:absolute;left:16px;bottom:22px;display:flex;gap:6px}.dots i{width:18px;height:2px;background:#fff6;transition:background .3s,width .3s}.dots i.on{background:#fff;width:32px}
+.meta{padding-top:18px}.row{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.card h3{font-size:30px;letter-spacing:-.01em}.price{font:400 22px var(--serif);white-space:nowrap}
+.place{color:var(--mute);font-size:15px;margin:2px 0 14px}
+.facts{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px;font-size:14px;color:#51583e}.facts div{display:flex;gap:18px}
+.facts button{background:none;border:0;border-bottom:1px solid var(--sea);padding:0 0 1px;cursor:pointer;font-size:14px;color:var(--sea)}.facts button:hover{color:#755014;border-color:#755014}
+.empty{grid-column:1/-1;padding:60px 0;font:300 32px var(--serif)}.empty button{margin-left:12px;background:none;border:0;border-bottom:1px solid;cursor:pointer;font:inherit;font-style:italic}
+/* approach */
+.approach{background:var(--sea);color:#f4ead3;margin-top:130px;padding:140px 0}
+.approach h2{font-size:clamp(40px,6.4vw,100px);line-height:1;letter-spacing:-.03em;max-width:15ch}.approach h2 em{color:var(--lamp)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:90px}
+.pillar{border-top:1px solid #ffffff33;padding-top:22px}.pillar h3{font-size:30px;margin-bottom:10px;font-style:italic}.pillar p{margin:0;color:#ffffffb8;max-width:34ch}
+/* destinations */
+.dest{display:flex;gap:12px;height:600px}
+.place-panel{position:relative;flex:1;overflow:hidden;color:#fff;display:flex;align-items:end;padding:28px;transition:flex .8s cubic-bezier(.2,.7,.2,1);background-color:var(--sea)}
+.place-panel img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.place-panel:hover img,.place-panel:focus-visible img{transform:scale(1.06)}
+.place-panel:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1b2318e6,transparent 60%)}
+.place-panel div{position:relative;z-index:1}.place-panel h3{font-size:36px;line-height:1.05;white-space:nowrap}.place-panel span{font-size:14px;color:#ffffffcc}
+.dest:hover .place-panel{flex:.7}.dest .place-panel:hover,.dest .place-panel:focus-visible{flex:2.2}
+/* quote */
+.quote{padding:150px 0;text-align:center;background:#b8bd95}
+.quote blockquote{margin:0 auto;max-width:18em;font:300 clamp(32px,5vw,68px)/1.1 var(--serif);letter-spacing:-.02em}
+.quote small{display:block;margin-top:36px;color:#414c33;font-size:15px}
+/* contact */
+.contact{background:#4b5937;color:#f4ead3;padding:120px 0}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:start}
+.contact h2{font-size:clamp(40px,5.4vw,78px);line-height:1;letter-spacing:-.03em}.contact h2 em{font-style:italic}
+.contact p{color:#e2ddc7;max-width:36ch;margin:28px 0}.contact .direct a{display:block;font:300 28px var(--serif);color:#f4ead3}
+form{display:grid;gap:26px}
+.f{display:block}.f span{font-size:13px;color:#e2ddc7}
+.f input,.f select,.f textarea{display:block;width:100%;border:0;border-bottom:1px solid #b9b89d;background:transparent;padding:8px 0 10px;font-size:18px;border-radius:0;outline-offset:4px}.f option{background:#4b5937;color:#f4ead3}
+.f input:focus,.f textarea:focus,.f select:focus{border-color:var(--lamp)}
+form .btn{justify-self:start}
+footer{background:var(--deep);color:#ffffffb3;padding:90px 0 30px}
+.big{font:300 clamp(60px,15vw,230px)/.85 var(--serif);letter-spacing:-.04em;color:#fff;margin-bottom:70px;white-space:nowrap}.big i{color:var(--lamp)}
+.foot{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;font-size:15px}.foot nav{display:flex;gap:28px;flex-wrap:wrap}.foot a:hover{color:var(--lamp)}
+.fine{margin-top:60px;padding-top:20px;border-top:1px solid #ffffff22;font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,20px);background:var(--sea);color:#fff;padding:14px 22px;border-radius:99px;font-size:15px;opacity:0;pointer-events:none;transition:.3s;z-index:40}.toast.show{opacity:1;transform:translate(-50%,0)}
+.site-cursor{display:none}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+html.custom-cursor-active,html.custom-cursor-active *{cursor:none!important}
+.site-cursor{display:block;position:fixed;top:0;left:0;z-index:100;pointer-events:none;opacity:0}
+html.custom-cursor-active .site-cursor{opacity:1}
+.site-cursor:before,.site-cursor:after{content:"";position:absolute;top:0;left:0;border-radius:50%;transform:translate(-50%,-50%)}
+.site-cursor:before{width:32px;height:32px;border:2px solid #fff8e5;background:#1b2318e6;box-shadow:0 0 0 2px #1b2318,0 4px 14px #0008;transition:width .25s,height .25s,background .25s,border-color .25s}
+.site-cursor:after{width:8px;height:8px;background:var(--lamp);transition:transform .25s,background .25s}
+.site-cursor.is-link:before{width:54px;height:54px;background:#e2bb70ed;border-color:#fff8e5}
+.site-cursor.is-link:after{background:var(--deep);transform:translate(-50%,-50%) scale(1.25)}
+}
+@keyframes reveal{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.reveal-in{animation:reveal .8s cubic-bezier(.2,.7,.2,1) both}
+@media(max-width:980px){.listings{grid-template-columns:repeat(2,1fr)}.card.feature{grid-column:1/-1}.search{grid-template-columns:1fr 1fr}.search .btn{grid-column:1/-1}.cgrid{grid-template-columns:1fr;gap:50px}.pillars{grid-template-columns:1fr;gap:34px;margin-top:60px}.dest{height:auto;flex-direction:column}.place-panel,.dest:hover .place-panel,.dest .place-panel:hover{flex:none;height:300px}}
+@media(max-width:700px){.wrap{width:calc(100% - 36px)}.nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--paper);color:var(--sea);padding:12px 24px 24px}.nav.open{display:flex}.nav a{padding:14px 0;font-size:20px;font-family:var(--serif)}header .cta{display:none}.menu{display:block;color:inherit}
+.hero-in{bottom:120px}.hero-sub{flex-direction:column;align-items:stretch;gap:24px}.listings{grid-template-columns:1fr;gap:44px}.section{padding-top:90px}.head{flex-direction:column;align-items:start;gap:20px;margin-bottom:36px}.approach,.quote{padding:90px 0}.contact{padding:80px 0}.search{padding:18px;gap:16px}
+.trust-row{grid-template-columns:1fr;gap:8px}.trust-row div{border-top:1px solid var(--line);padding-top:10px}.scroll-cue{display:none}.hero-kicker{margin-bottom:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}.hero h1 span b,.hero-sub{transform:none;opacity:1}.btn:hover,.place-panel:hover img,.place-panel:focus-visible img{transform:none}}
+</style>
+</head>
+<body>
+<header id="hdr"><div class="wrap"><a class="logo" href="#top" aria-label="Maison Vale">MAISON <i>Vale</i></a>
+<nav class="nav" id="nav" aria-label="Main"><a href="#homes">Homes</a><a href="#approach">Our approach</a><a href="#destinations">Destinations</a><a href="#contact">Contact</a></nav>
+<a class="cta" href="#contact">Book a private viewing</a><button class="menu" id="menu" aria-expanded="false" aria-controls="nav">Menu</button></div></header>
+<main id="top">
+<section class="hero"><div class="hero-img" role="img" aria-label="Modern white villa with a swimming pool"></div>
+<div class="wrap hero-in"><div class="hero-kicker">Private homes across Türkiye</div><h1 aria-label="Spaces to feel something."><span><b>Spaces to</b></span><span><b>feel</b></span><span><b>something.</b></span></h1>
+<div class="hero-sub"><p>A considered collection of extraordinary homes, from sunlit coastal hideaways to quietly iconic city residences.</p>
+<div class="light"><label for="light">Watch the light change <output id="clock">9:30 am</output></label><input id="light" type="range" min="0" max="100" value="30" aria-label="Time of day"></div></div></div><a class="scroll-cue" href="#homes" aria-label="Explore homes">↓</a></section>
+<div class="wrap search-wrap"><form class="search" id="search">
+<div class="field"><label for="kind">Property type</label><select id="kind"><option value="">All properties</option><option>Villa</option><option>Apartment</option><option>Penthouse</option><option>Country house</option></select></div>
+<div class="field"><label for="place">Destination</label><select id="place"><option value="">Anywhere</option><option>Bodrum</option><option>Istanbul</option><option>Antalya</option><option>Fethiye</option><option>Izmir</option></select></div>
+<div class="field"><label for="beds">Bedrooms</label><select id="beds"><option value="">Any</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option><option value="5">5+</option></select></div>
+<div class="field"><label for="budget">Budget</label><select id="budget"><option value="">Any budget</option><option value="500000">Up to $500k</option><option value="1000000">Up to $1m</option><option value="2000000">Up to $2m</option></select></div>
+<button class="btn">Find a home</button></form></div>
+<div class="wrap trust-row" aria-label="Service benefits"><div><i>01</i> Curated, not crowded</div><div><i>02</i> Viewings around your schedule</div><div><i>03</i> One dedicated property partner</div></div>
+
+<section class="wrap section" id="homes"><div class="head"><h2>Homes worth<br><em>looking twice</em> at.</h2><p>Every listing is a visual walkthrough. Use the arrows, or swipe, to move from first impression to the finer details. <b id="count" style="color:var(--sea);font-weight:500">8 homes</b></p></div><div class="listings" id="listings"></div></section>
+
+<section class="approach" id="approach"><div class="wrap"><h2>Not just a home. A whole new <em>feeling.</em></h2>
+<div class="pillars"><div class="pillar"><h3>Light</h3><p>We visit at breakfast and at dusk, so you know how a room behaves all day, not just in photographs.</p></div><div class="pillar"><h3>Rhythm</h3><p>We walk the neighbourhood with you: the bakery hours, the boat horns, the quiet after 10.</p></div><div class="pillar"><h3>Detail</h3><p>Stone, joinery, a window cut to frame one cypress. We point out what makes a place yours.</p></div></div></div></section>
+
+<section class="wrap section" id="destinations"><div class="head"><h2>Find your <em>somewhere.</em></h2><p>A few of the places we know well. Hover to open one.</p></div>
+<div class="dest"><a class="place-panel" href="#homes" data-go="Bodrum"><img loading="lazy" alt="" src="assets/maison-vale/home-04/01.webp"><div><h3>The Aegean coast</h3><span>Bodrum, Izmir, Fethiye</span></div></a>
+<a class="place-panel" href="#homes" data-go="Istanbul"><img loading="lazy" alt="" src="assets/maison-vale/home-11/01.webp"><div><h3>City stories</h3><span>Istanbul</span></div></a>
+<a class="place-panel" href="#homes" data-go="Antalya"><img loading="lazy" alt="" src="assets/maison-vale/home-07/01.webp"><div><h3>Slow Mediterranean</h3><span>Antalya</span></div></a></div></section>
+
+<section class="quote"><div class="wrap"><blockquote>“They understood the feeling we were searching for before we had the words to describe it.”</blockquote><small>A private client, Aegean coast</small></div></section>
+
+<section class="contact" id="contact"><div class="wrap cgrid"><div><h2>Tell us what <em>home</em> means to you.</h2><p>Whether you're buying, selling or just exploring, share your plans and a property partner will reply within one working day.</p><div class="direct"><a href="mailto:hello@maisonvale.example">hello@maisonvale.example</a><a href="tel:+902125550148">+90 212 555 0148</a></div></div>
+<form id="enq"><label class="f"><span>Your name</span><input required autocomplete="name"></label><label class="f"><span>Email address</span><input required type="email" autocomplete="email"></label><label class="f"><span>I'm interested in</span><select><option>Buying</option><option>Selling</option><option>Renting</option><option>Property advice</option></select></label><label class="f"><span>Tell us about your ideal home</span><textarea id="msg" rows="3"></textarea></label><button class="btn">Send enquiry</button></form></div></section>
+</main>
+<footer><div class="wrap"><div class="big" aria-hidden="true">Maison <i>Vale</i></div><div class="foot"><p style="margin:0;max-width:30ch">Spaces to feel something. A curated approach to exceptional property.</p><nav aria-label="Footer"><a href="#homes">Collection</a><a href="#destinations">Destinations</a><a href="#approach">Approach</a><a href="#contact">Contact</a></nav></div><div class="fine"><span>© 2026 Maison Vale, concept website</span><span>All prices and property details are illustrative demo content.</span></div></div></footer>
+<div class="toast" id="toast" role="status"></div>
+<div class="site-cursor" id="site-cursor" aria-hidden="true"></div>
+<script>
+const $=s=>document.querySelector(s),P=(id,title,type,place,price,beds,baths,area,photos,tag)=>({id,title,type,place,price,beds,baths,area,photos,tag});
+const gallery=(id,count)=>Array.from({length:count},(_,i)=>`assets/maison-vale/home-${String(id).padStart(2,'0')}/${String(i+1).padStart(2,'0')}.webp`);
+const homes=[
+P(1,"The Olive House","Villa","Bodrum","$1,280,000",4,3,"285 m²",gallery(1,6),"Sea view"),
+P(2,"The Atelier Residence","Apartment","Istanbul","$645,000",3,2,"168 m²",gallery(2,5),"City edition"),
+P(3,"Casa Solana","Villa","Antalya","$1,950,000",5,4,"410 m²",gallery(3,1),"Private pool"),
+P(4,"The Cypress Retreat","Country house","Fethiye","$890,000",4,3,"310 m²",gallery(4,5),"Country living"),
+P(5,"Azure Penthouse","Penthouse","Bodrum","$2,350,000",3,3,"240 m²",gallery(5,4),"Rooftop terrace"),
+P(6,"The Garden Apartment","Apartment","Izmir","$420,000",2,2,"132 m²",gallery(6,6),"Garden access"),
+P(7,"Limestone House","Villa","Antalya","$1,475,000",4,4,"355 m²",gallery(7,4),"Architect designed"),
+P(8,"The Bosphorus Suite","Apartment","Istanbul","$1,100,000",3,2,"190 m²",gallery(8,4),"Waterfront"),
+P(9,"The Lake House","Country house","Fethiye","$1,320,000",4,3,"296 m²",gallery(9,4),"Lake views"),
+P(10,"The White Residence","Villa","Antalya","$985,000",3,2,"248 m²",gallery(10,1),"Private garden"),
+P(11,"The City Residence","Apartment","Istanbul","$780,000",2,2,"142 m²",gallery(11,4),"City edition"),
+P(12,"The Garden House","Country house","Izmir","$575,000",4,3,"260 m²",gallery(12,5),"Garden access"),
+P(13,"The Orchard House","Villa","Bodrum","$1,050,000",4,3,"275 m²",gallery(13,1),"Quiet setting")];
+const idx={},saved=new Set();homes.forEach(h=>idx[h.id]=0);
+const dots=h=>h.photos.map((_,i)=>`<i class="${i===idx[h.id]?'on':''}"></i>`).join('');
+function render(items=homes){
+ if(revealObserver)$('#listings').querySelectorAll('.card').forEach(card=>revealObserver.unobserve(card));
+ $('#listings').innerHTML=items.length?items.map((h,n)=>{const f=n===0&&items.length>2;return `<article class="card${f?' feature':''}" data-id="${h.id}"><div class="gallery"><img src="${h.photos[idx[h.id]]}" alt="${h.title}, view ${idx[h.id]+1} of ${h.photos.length}" loading="lazy"><span class="tag">${h.tag}</span><button class="save" aria-pressed="${saved.has(h.id)}" aria-label="Save ${h.title}" data-act="save">${saved.has(h.id)?'♥':'♡'}</button><div class="dots">${dots(h)}</div><button class="arrow prev" aria-label="Previous photo" data-act="-1">‹</button><button class="arrow next" aria-label="Next photo" data-act="1">›</button></div><div class="meta"><div class="row"><h3>${h.title}</h3><span class="price">${h.price}</span></div><div class="place">${h.place}, Türkiye · ${h.type}</div><div class="facts"><div><span>${h.beds} beds</span><span>${h.baths} baths</span><span>${h.area}</span></div><button data-act="enq">Enquire</button></div></div></article>`}).join(''):`<p class="empty">No homes match yet.<button id="reset">Clear filters</button></p>`;
+ $('#count').textContent=`${items.length} ${items.length===1?'home':'homes'}`;observeReveals($('#listings'),'.card')}
+function step(id,d){const h=homes.find(x=>x.id===id),c=document.querySelector(`[data-id="${id}"]`),im=c.querySelector('img');idx[id]=(idx[id]+d+h.photos.length)%h.photos.length;im.classList.add('swap');
+ setTimeout(()=>{im.src=h.photos[idx[id]];im.alt=`${h.title}, view ${idx[id]+1} of ${h.photos.length}`;c.querySelector('.dots').innerHTML=dots(h);im.onload=()=>im.classList.remove('swap')},180)}
+$('#listings').addEventListener('click',e=>{
+ if(e.target.id==='reset'){$('#search').reset();render();return}
+ const b=e.target.closest('[data-act]');if(!b)return;const card=b.closest('.card'),id=+card.dataset.id,a=b.dataset.act;
+ if(a==='save'){const on=!saved.has(id);on?saved.add(id):saved.delete(id);b.textContent=on?'♥':'♡';b.setAttribute('aria-pressed',on);toast(on?'Saved to your shortlist':'Removed from your shortlist')}
+ else if(a==='enq'){const h=homes.find(x=>x.id===id);$('#msg').value=`I'd like to arrange a viewing of ${h.title}, ${h.place}.`;$('#contact').scrollIntoView({behavior:'smooth'})}
+ else step(id,+a)});
+let sx=0;const L=$('#listings');
+L.addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
+L.addEventListener('touchend',e=>{const g=e.target.closest('.gallery');if(!g)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>40)step(+g.closest('.card').dataset.id,dx<0?1:-1)});
+function filter(){const k=$('#kind').value,p=$('#place').value,b=+$('#beds').value||0,m=+$('#budget').value||0;
+ render(homes.filter(h=>(!k||h.type===k)&&(!p||h.place===p)&&(!b||h.beds>=b)&&(!m||+h.price.replace(/\D/g,'')<=m)));$('#homes').scrollIntoView({behavior:'smooth'})}
+$('#search').addEventListener('submit',e=>{e.preventDefault();filter()});
+document.querySelectorAll('[data-go]').forEach(a=>a.addEventListener('click',()=>{$('#search').reset();$('#place').value=a.dataset.go;setTimeout(filter,0)}));
+/* light scrubber */
+const lt=$('#light'),clk=$('#clock');
+function light(){const v=lt.value/100;document.documentElement.style.setProperty('--light',v);const m=Math.round(6*60+v*14*60),h=Math.floor(m/60),mm=String(m%60).padStart(2,'0');clk.textContent=`${h%12||12}:${mm} ${h<12?'am':'pm'}`}
+lt.addEventListener('input',light);light();
+/* header, menu, toast */
+const hd=$('#hdr');const sc=()=>hd.classList.toggle('solid',scrollY>window.innerHeight*.7);addEventListener('scroll',sc,{passive:true});sc();
+$('#menu').onclick=e=>{const o=$('#nav').classList.toggle('open');e.target.setAttribute('aria-expanded',o)};
+$('#nav').addEventListener('click',e=>{if(e.target.tagName==='A')$('#nav').classList.remove('open')});
+let tt;function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2400)}
+$('#enq').addEventListener('submit',e=>{e.preventDefault();toast('Thank you. This demo form only records enquiries on this page.');e.target.reset()});
+const revealObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('reveal-in');revealObserver.unobserve(entry.target)}}),{threshold:.08}):null;
+function observeReveals(root,selector){if(revealObserver)root.querySelectorAll(selector).forEach(el=>revealObserver.observe(el))}
+observeReveals(document,'.head, .pillar, .place-panel, .quote blockquote, .quote small, .cgrid > div, #enq');
+render();
+const cursor=$('#site-cursor'),cursorMedia=matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+function hideCursor(){document.documentElement.classList.remove('custom-cursor-active')}
+function moveCursor(e){
+ if(e.pointerType!=='mouse'||!cursorMedia.matches||e.target.closest('input, textarea, select, [contenteditable="true"]')){hideCursor();return}
+ cursor.style.transform=`translate3d(${e.clientX}px,${e.clientY}px,0)`;
+ cursor.classList.toggle('is-link',!!e.target.closest('a, button'));
+ document.documentElement.classList.add('custom-cursor-active');
+}
+document.addEventListener('pointermove',moveCursor);
+document.addEventListener('pointerover',moveCursor);
+document.addEventListener('pointerout',e=>{if(!e.relatedTarget)hideCursor()});
+window.addEventListener('blur',hideCursor);
+cursorMedia.addEventListener('change',hideCursor);
+</script>
+</body></html>
